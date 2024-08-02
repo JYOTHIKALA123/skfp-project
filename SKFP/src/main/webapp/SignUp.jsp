@@ -45,14 +45,34 @@
         <h3>Already have an Account? <a href="Login.jsp">Login</a></h3>
     </div>
    <script src="signup.js"></script>
-   <script>
-       function signup() {
-           alert("Sign up successfully!");
-       }
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there is a message attribute and display it
+            const message = document.getElementById('message').textContent.trim();
+            if (message) {
+                document.getElementById('message').style.display = 'block';
+            }
+        });
 
-       document.getElementById("submit").onclick = function() {
-           window.location.href = "Login.jsp";
-       };
-   </script>
-</body>
+        function validateForm(event) {
+            const email = document.getElementById('email').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirm_password').value.trim();
+
+            if (!email || !username || !password || !confirmPassword) {
+                alert('Please fill in all fields.');
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return false;
+            }
+
+            alert('Sign up successfully!');
+            window.location.href = 'Login.jsp';
+            return false; // Prevent the form from submitting
+        }
+    </script>
 </html>
